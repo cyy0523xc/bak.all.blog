@@ -1,0 +1,12 @@
+<div class="site-name">
+    <%= config.title %> 
+    <span><%= config.subtitle %></span>
+</div>
+
+<nav>
+  <ul>
+    <% for (var i in theme.menu){ %>
+      <li><a href="<%- theme.menu[i] %>"><%= i %></a></li>
+    <% } %>
+  </ul>
+</nav>

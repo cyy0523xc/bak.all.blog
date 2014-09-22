@@ -1,0 +1,678 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives | 数据明月</title>
+  <meta name="author" content="AlexCai">
+
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="数据明月" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="site-name">
+    数据明月 
+    <span>心有沉香，无惧浮世！</span>
+</div>
+
+<nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="http://github.com/cyy0523xc/">Github</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+</header>
+  <div id="content" class="inner">
+
+<header id="archive-header">
+  <h1 class="alignleft">Archives</h1>
+  <div class="search alignright">
+    <form action="http://google.com/search" method="get" accept-charset="utf-8">
+      <input type="search" name="q" results="0" placeholder="Search">
+      <input type="hidden" name="q" value="site:cyy0523xc.github.io">
+    </form>
+  </div>
+</header>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/22/shell命令自动补全/">shell命令自动补全</a></h1>
+  
+
+    <time datetime="2014-09-22T07:02:13.000Z">
+  <span class="day">22</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># github相关操作 </span></div><div class="line"><span class="function"><span class="title">github</span></span>() {</div><div class="line">    <span class="built_in">cd</span>_github_code</div><div class="line">    my_github=git@github.com/cyy053xc/</div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span> </div><div class="line">        <span class="string">"c"</span>|<span class="string">"clone"</span>)</div><div class="line">            git clone <span class="variable">$my_github</span><span class="variable">$2</span><span class="string">".git"</span></div><div class="line">            ;;</div><div class="line">        <span class="string">"l"</span>|<span class="string">"pull"</span>)</div><div class="line">            <span class="built_in">pushd</span> <span class="variable">$my_github</span><span class="variable">$2</span></div><div class="line">            git pull</div><div class="line">            <span class="built_in">popd</span></div><div class="line">            ;;</div><div class="line">        <span class="string">"s"</span>|<span class="string">"push"</span>)</div><div class="line">            <span class="built_in">pushd</span> <span class="variable">$my_github</span><span class="variable">$2</span></div><div class="line">            git pull </div><div class="line">            git commit -am <span class="string">'script commit'</span></div><div class="line">            git push </div><div class="line">            <span class="built_in">popd</span></div><div class="line">            ;;</div><div class="line">        <span class="string">"h"</span>|<span class="string">"help"</span>|*)</div><div class="line">            cat &lt;&lt;EOF</div><div class="line">github [hcls] [path] </div><div class="line"></div><div class="line">usage:</div><div class="line">h|<span class="built_in">help</span>               : <span class="built_in">help</span></div><div class="line">c|clone  project     : git clone {<span class="variable">$my_github</span>}project.git</div><div class="line">l|pull   project     : git pull </div><div class="line">s|push   project     : git push </div><div class="line">EOF</div><div class="line">            ;;</div><div class="line">    <span class="keyword">esac</span></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment"># 补全函数</span></div><div class="line">function <span class="function"><span class="title">_github</span></span>() {</div><div class="line">    COMPREPLY=()</div><div class="line">    local cur=<span class="variable">${COMP_WORDS[COMP_CWORD]}</span>;</div><div class="line">    local com=<span class="variable">${COMP_WORDS[COMP_CWORD-1]}</span>;</div><div class="line">    <span class="keyword">case</span> <span class="variable">$com</span> <span class="keyword">in</span></div><div class="line">        <span class="string">'github'</span>)</div><div class="line">            COMPREPLY=($(compgen -W <span class="string">'c clone l pull s push h help'</span> -- <span class="variable">$cur</span>))</div><div class="line">            ;;</div><div class="line">        <span class="string">'compile'</span>)</div><div class="line">            local pro=($(awk <span class="string">'{print $1}'</span> project.list))</div><div class="line">            COMPREPLY=($(compgen -W <span class="string">'${pro[@]}'</span> -- <span class="variable">$cur</span>))</div><div class="line">            ;;</div><div class="line">        *)</div><div class="line">            ;;</div><div class="line">    <span class="keyword">esac</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment"># 绑定自动补全函数</span></div><div class="line">complete -F _github github</div></pre></td></tr></table></figure>
+
+<p>从效果上，可以说已经实现了tab键自动补全，不过不是很完美：</p>
+<ul>
+<li>每个函数需要搭配一个额外的补全函数</li>
+<li>补全函数的实现有大量的重复代码</li>
+<li>另外还需要一个额外的命令进行绑定</li>
+</ul>
+<p>理想的应该是：在函数的内部加上一条命令或者一个配置来解决。</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/shell/">shell</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/22/vimscript问题汇总/">vimscript问题汇总</a></h1>
+  
+
+    <time datetime="2014-09-22T02:54:36.000Z">
+  <span class="day">22</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="source时提示“E484:_无法打开文件”">source时提示“E484: 无法打开文件”</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> <span class="string">'/home/code/github/code/vim/cyy.vim'</span></div></pre></td></tr></table></figure>
+
+<p>应该去掉路径中的单引号，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span> <span class="regexp">/home/</span>code<span class="regexp">/github/</span>code<span class="regexp">/vim/</span>cyy.vim</div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/record/">record</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/vim/">vim</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/19/vim脚本vimscript/">vim脚本vimscript</a></h1>
+  
+
+    <time datetime="2014-09-19T11:55:44.000Z">
+  <span class="day">19</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Vim的脚本语言被称为Vimscript，是典型的动态式命令语言，提供一些常用的语言特征：变量、表达式、控制结构、内置函数、用户自定义函数、一级字符串、列表、字典、终端、文件IO、正则表达式模式匹配、异常和集成调试器等。<br>在学习Vimscript时，你可以学习Vim自带的Vimscript文档，打开Vim自带的Vimscript很简单，只需在Vim内部执行：help vim-script-intro（Normal模式下）</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/vim/">vim</a><a href="/tags/vimscript/">vimscript</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/18/vim的模式/">vim的模式</a></h1>
+  
+
+    <time datetime="2014-09-18T07:36:31.000Z">
+  <span class="day">18</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="通常模式(n)">通常模式(n)</h2>
+<p>在其它任何一个模式下,用ESC或者 ctrl+c 键可以退到通常模式</p>
+<h2 id="插入模式(i)">插入模式(i)</h2>
+<p>在这个模式下,vim像一个常见的编辑器.在通常模式下,用i或者a可以进行本模式,当然,还有一些其它命令也可以.</p>
+<h2 id="可视模式(v)">可视模式(v)</h2>
+<p>在这个模式下,可以使用hjkl进行选择.然后进行copy,paste或者其它操作. 在通常模式下,用 <strong>v or shift+v</strong> 命令进行可视模式.</p>
+<h2 id="列块操作模式(V)">列块操作模式(V)</h2>
+<p>这是块操作模式. 在通常模式下,用 <strong>ctrl+v</strong> 进入本模式.</p>
+<p>例如注释多行代码等（ <strong>I, #, ESC</strong> ）</p>
+<p>还有 <strong>行尾列块操作模式</strong> ：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gg, ctrl+v, <span class="constant">G</span>, <span class="variable">$,</span> <span class="constant">A</span></div></pre></td></tr></table></figure>
+
+<h2 id="修改模式(R)">修改模式(R)</h2>
+<p>这是改写的模式.很多软件法用insert键来完成这个切换.在vim中,从通常模式用R即可进入改写模式.</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/vim/">vim</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/18/在PHP中近似实现AOP思想/">在PHP中近似实现AOP思想</a></h1>
+  
+
+    <time datetime="2014-09-18T03:15:43.000Z">
+  <span class="day">18</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="简介">简介</h2>
+<p><strong>AOP</strong> 为Aspect Oriented Programming的缩写，意为： <strong>面向切面编程</strong> ，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<p><strong>主要的功能</strong> 是：日志记录，性能统计，安全控制，事务处理，异常处理等等。</p>
+<p><strong> 主要的意图</strong> 是：将日志记录，性能统计，安全控制，事务处理，异常处理等代码从业务逻辑代码中划分出来，通过对这些行为的分离，我们希望可以将它们独立到非指导业务逻辑的方法中，进而改变这些行为的时候不影响业务逻辑的代码。</p>
+<h2 id="PHP实现">PHP实现</h2>
+<p>PHP的原生内核并没有相关的实现，不过借助魔术函数可以近似实现。</p>
+<p>下面的代码主要实现了对实现了对业务类的包装：</p>
+<ul>
+<li>定义了两个层次的前置和后置函数：可以全局的（类层面的所有action），也可以局部的（对某个action的）</li>
+<li>允许继承</li>
+</ul>
+<p>代码如下：</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/PHP/">PHP</a><a href="/tags/AOP/">AOP</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/17/shell记录/">shell记录</a></h1>
+  
+
+    <time datetime="2014-09-17T06:29:07.000Z">
+  <span class="day">17</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h1 id="批量重命名文件">批量重命名文件</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rename <span class="string">'s/201[34]\-[01][0-9]\-[012][0-9]\-//'</span> *.md</div></pre></td></tr></table></figure>
+
+<h1 id="期待一元表达式">期待一元表达式</h1>
+<p>异常信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">bash</span>: <span class="string">[: h: 期待一元表达式]</span></div></pre></td></tr></table></figure>
+
+<p>对应语句：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="variable">$1</span> ]</div><div class="line"></div><div class="line"><span class="comment"># 如果变量未定义的话，则报错，应改成：</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="string">"<span class="variable">$1</span>"</span> ]</div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/record/">record</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/shell/">shell</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/15/失控：石头是进化缓慢的生命/">失控：石头是进化缓慢的生命</a></h1>
+  
+
+    <time datetime="2014-09-15T15:30:00.000Z">
+  <span class="day">15</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>今天中午看失控的时候，有这么一节：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">石头是进化缓慢的生命</div></pre></td></tr></table></figure>
+
+<p>以前也考虑过这样的问题：</p>
+<p>我们作为一个自然人，向体内看，我们会看到细胞等各种碳水化合物，那么站在细胞的角度来看，他们会不会觉得自己也是一个个的“人”？再往外看，我们一个个自以为是人的人，会不会又是一个庞然大物的细胞？例如，把整个地球看成一个“巨人”，这是否成立？</p>
+<p>这涉及三个层次的“人”：</p>
+<ul>
+<li>细胞</li>
+<li>自然人</li>
+<li>地球</li>
+</ul>
+<p>人会生老病死，那么细胞会不会？地球会不会？显然都会，不同的只是生命的长短。细胞在人的体内， 不停的做着看似无规则的运动，却基本不会感知我们作为人自身的运动；而人生活在地球上，我们每个人也在不停的运动着，基本也不会感觉到地球本身的运动。 </p>
+<p>细胞死了之后会怎么样，会进入怎么样的循环里，这个不太清楚（生物没学好）；人死了之后，经过若干的化学反应，又会融入到自然界中，慢慢被植物所吸收，植物又被动物所消化，不知不觉又进入了我们的身体内，这是一个不断循环的过程； 而地球作为星球，所谓的死，应该就是解体，解体之后碎片显然会在宇宙间漂浮，慢慢的又被吸引到其他的星球上，这也是一个循环。</p>
+<p>这个结论在科学上是否成立，其实对于我们来说并不重要，我们所收获的是，我们所理解的生物和非生物，其更抽象的层面上的“生命”是何其的相似。</p>
+<p>对于我们来说，这是一个思维的游戏。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">PS</span>: <span class="string">失控是一本好书，值得一看。</span></div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/失控/">失控</a><a href="/tags/读书笔记/">读书笔记</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/12/vim中替换-M符号/">vim中替换^M符号</a></h1>
+  
+
+    <time datetime="2014-09-12T09:14:32.000Z">
+  <span class="day">12</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>在使用git pull时，发生文件冲突，合并冲突时，发现行尾显示了很多 <strong>^M</strong> 的符号。这是一个特殊符号，可以使用替换：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%s/^M$//g</div></pre></td></tr></table></figure>
+
+<p>注意：命令中的 <strong>^M</strong> 需要用“ <strong>CTRL-V CTRL-M</strong> ” 生成。</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/vim/">vim</a><a href="/tags/linux/">linux</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/09/11/hexo记录/">hexo记录</a></h1>
+  
+
+    <time datetime="2014-09-11T03:19:30.000Z">
+  <span class="day">11</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h3 id="f-browser-msie没有定义">f.browser.msie没有定义</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># @see: http://stackoverflow.com/questions/14344289/fancybox-doesnt-work-with-jquery-v1-9-0-f-browser-is-undefined-cannot-read/14344290</div><div class="line"></div><div class="line"># vim themes/phase/layout/_partial/head.ejs</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://code.jquery.com/jquery-latest.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"></div><div class="line"># replace by:</div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://code.jquery.com/jquery-latest.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://code.jquery.com/jquery-migrate-1.0.0.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="文章摘要">文章摘要</h3>
+<p>在需要的地方加上：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--more--&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="插入数学公式">插入数学公式</h3>
+<p>Mathjax的语法和LaTeX一致，在markdown中直接插入即可(注意上面我们修改了mathjax默认的inlineMath选项)，下面举些例子，更多语法请参考 <a href="http://www.lsv.ens-cachan.fr/~markey/LaTeX/doc/Companion-chapter8.pdf" target="_blank" rel="external">LaTeX Higher Mathematics</a>：</p>
+<p><a href="http://blog.163.com/goldman2000@126/blog/static/167296895201221242646561/" target="_blank" rel="external">LaTeX入门</a></p>
+<p>插入方程组:</p>
+<p>\begin{aligned}<br>\dot{x} &amp; = \sigma(y-x) \\<br>\dot{y} &amp; = \rho x - y - xz \\<br>\dot{z} &amp; = -\beta z + xy<br>\end{aligned}</p>
+<p>插入矩阵：</p>
+<p>\begin{bmatrix}<br>1 &amp; 2\\<br>3 &amp; 4<br>\end{bmatrix}</p>
+<p>薛定谔方程：</p>
+<p>$$ \hbar\frac{\partial \psi}{\partial t}<br>= \frac{-\hbar^2}{2m} \left(<br>\frac{\partial^2}{\partial x^2}</p>
+<ul>
+<li>\frac{\partial^2}{\partial y^2}</li>
+<li>\frac{\partial^2}{\partial z^2}<br>\right<br>) \psi + V \psi. $$</li>
+</ul>
+<p>see: <a href="http://www.winterland.me/2013/12/hexo-mathjax/" target="_blank" rel="external">http://www.winterland.me/2013/12/hexo-mathjax/</a></p>
+<p>vim themesfolder/layout/_partial/mathjax.ejs</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="javascript"></span></div><div class="line">MathJax.Hub.Config({</div><div class="line">    tex2jax: {</div><div class="line">        inlineMath: [ [<span class="string">'$'</span>,<span class="string">'$'</span>], [<span class="string">"\\("</span>,<span class="string">"\\)"</span>]  ],</div><div class="line">        processEscapes: <span class="literal">true</span></div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="javascript"></span></div><div class="line">MathJax.Hub.Config({</div><div class="line">    tex2jax: {</div><div class="line">        skipTags: [<span class="string">'script'</span>, <span class="string">'noscript'</span>, <span class="string">'style'</span>, <span class="string">'textarea'</span>, <span class="string">'pre'</span>, <span class="string">'code'</span>]</div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-mathjax-config"</span>&gt;</span><span class="javascript"></span></div><div class="line">MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> all = MathJax.Hub.getAllJax(), i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.length; i += <span class="number">1</span>) {</div><div class="line">        all[i].SourceElement().parentNode.className += <span class="string">' has-jax'</span>;</div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="自定义页面">自定义页面</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo n page <span class="string">"about"</span></div></pre></td></tr></table></figure>
+
+<h3 id="加载慢的问题">加载慢的问题</h3>
+<p>通常是因为加载外部资源超时，例如google开放的jquery库等。修改即可。</p>
+<h3 id="常用命令">常用命令</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean  <span class="comment"># deploy到github时，有时需要先运行该命令，例如修改样式时</span></div><div class="line">hexo g</div><div class="line">hexo d</div><div class="line">hexo s</div><div class="line">hexo n <span class="string">"title"</span>   <span class="comment"># 生成文章</span></div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/Record/">Record</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/hexo/">hexo</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/08/15/vim命令汇总/">vim命令汇总</a></h1>
+  
+
+    <time datetime="2014-08-14T16:00:00.000Z">
+  <span class="day">15</span><span class="month">8月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h3 id="vim_命令汇总">vim 命令汇总</h3>
+<p><a href="http://www.cnblogs.com/softwaretesting/archive/2011/07/12/2104435.html" target="_blank" rel="external">http://www.cnblogs.com/softwaretesting/archive/2011/07/12/2104435.html</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 单词操作</span></div><div class="line">yw    复制单词</div><div class="line">dw    删除单词</div><div class="line"></div><div class="line"><span class="variable">n=</span>=   n行缩进</div><div class="line"></div><div class="line">.     重复刚才的命令</div><div class="line">z+f % 折叠代码</div><div class="line"></div><div class="line">o     插入一个空行</div><div class="line">CTRL+v, I, <span class="comment">#, ESC    多行注释（#可以换成其他的，例如//）</span></div><div class="line">      删除多行注释的方法，同样 Ctrl+v 进入列选择模式，移到光标把注释符选中，按下d，注释就被删除了</div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/linux/">linux</a><a href="/tags/vim/">vim</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+
+  <nav id="pagenavi">
+  
+  
+    <a href="/archives/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2014 AlexCai
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+    try {
+        $('.fancybox').fancybox();
+    } catch(e) {
+        console.log('after_footer:fancybox');
+    }
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>
