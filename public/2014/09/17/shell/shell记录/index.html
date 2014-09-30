@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>shell记录 | 数据明月</title>
+  <meta name="author" content="AlexCai">
+
+  
+  <meta name="description" content="字符串参与条件判断或者计算时，必须加上双引号
+12345if [ -n &quot;$string&quot; ]; string=&quot;test  test2&quot;your_func $string      # 错误：函数会接收到两个参数your_func &quot;$string&quot;    # 正常：函数正常接收到一个参数
+
+注意">
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="数据明月" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="site-name">
+    数据明月 
+    <span>心有沉香，无惧浮世！</span>
+</div>
+
+<nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="http://github.com/cyy0523xc/">Github</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+</header>
+  <div id="content" class="inner"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title">shell记录</h1>
+  
+
+    <time datetime="2014-09-17T06:29:07.000Z">
+  <span class="day">17</span><span class="month">9月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h1 id="字符串参与条件判断或者计算时，必须加上双引号">字符串参与条件判断或者计算时，必须加上双引号</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$string</span>"</span> ]; </div><div class="line"></div><div class="line">string=<span class="string">"test  test2"</span></div><div class="line">your_func <span class="variable">$string</span>      <span class="comment"># 错误：函数会接收到两个参数</span></div><div class="line">your_func <span class="string">"<span class="variable">$string</span>"</span>    <span class="comment"># 正常：函数正常接收到一个参数</span></div></pre></td></tr></table></figure>
+
+<p>注意： <strong>shell会把字符串按照IFS进行分割处理</strong></p>
+<h1 id="多行字符串：IFS换行符">多行字符串：IFS换行符</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">ifs=<span class="variable">$IFS</span> </div><div class="line">IFS=$`\n`              <span class="comment"># 注意这里，不能使用: IFS="\n" or IFS='\n'</span></div><div class="line">config=`cat &lt;&lt;EOF</div><div class="line">output: .user.js</div><div class="line"></div><div class="line">dese:</div><div class="line"><span class="comment">// ==UserScript==</span></div><div class="line"><span class="comment">// @name         Userscript</span></div><div class="line"><span class="comment">// @namespace    http://cyy0523xc.github.io/</span></div><div class="line"><span class="comment">// @version      0.1</span></div><div class="line"><span class="comment">// @description  something </span></div><div class="line"><span class="comment">// @match        http://*/*</span></div><div class="line"><span class="comment">// @copyright    2014, Alex(cyy0523xc@gmail.com)</span></div><div class="line"><span class="comment">// ==/UserScript==</span></div><div class="line">    </div><div class="line">input: </div><div class="line">- </div><div class="line">   </div><div class="line">EOF`</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="variable">$config</span></div><div class="line">IFS=<span class="variable">$ifs</span></div></pre></td></tr></table></figure>
+
+<h1 id="批量重命名文件">批量重命名文件</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rename <span class="string">'s/201[34]\-[01][0-9]\-[012][0-9]\-//'</span> *.md</div></pre></td></tr></table></figure>
+
+<h1 id="期待一元表达式">期待一元表达式</h1>
+<p>异常信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">bash</span>: <span class="string">[: h: 期待一元表达式]</span></div></pre></td></tr></table></figure>
+
+<p>对应语句：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="variable">$1</span> ]</div><div class="line"></div><div class="line"><span class="comment"># 如果变量未定义的话，则报错，应改成：</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="string">"<span class="variable">$1</span>"</span> ]</div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/record/">record</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/shell/">shell</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2014 AlexCai
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+    try {
+        $('.fancybox').fancybox();
+    } catch(e) {
+        console.log('after_footer:fancybox');
+    }
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>
