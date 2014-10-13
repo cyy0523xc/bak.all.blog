@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2014/10 | 数据明月</title>
+  <meta name="author" content="AlexCai">
+
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="数据明月" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="site-name">
+    数据明月 
+    <span>心有沉香，无惧浮世！</span>
+</div>
+
+<nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="http://github.com/cyy0523xc/">Github</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+</nav>
+</header>
+  <div id="content" class="inner">
+
+<header id="archive-header">
+  <h1 class="alignleft">Archives: 2014/10</h1>
+  <div class="search alignright">
+    <form action="http://google.com/search" method="get" accept-charset="utf-8">
+      <input type="search" name="q" results="0" placeholder="Search">
+      <input type="hidden" name="q" value="site:cyy0523xc.github.io">
+    </form>
+  </div>
+</header>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/10/13/vim/markdown中快速进行表格对齐/">在markdown中快速进行表格对齐</a></h1>
+  
+
+    <time datetime="2014-10-12T16:00:00.000Z">
+  <span class="day">13</span><span class="month">10月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>在markdown中的表格格式对齐是比价麻烦的，有了tabular这个vim插件之后，简单了许多，用法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="number">45</span>,<span class="number">67</span> <span class="keyword">Tab</span> /|</div></pre></td></tr></table></figure>
+
+<p>这样就可以将表格按竖线进行对齐了，比较简单。不过经常修改表格时，每次都要输入这样一个命令还是挺麻烦的，故实现成快捷键的形式，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="string">" align</span></div><div class="line">" markdown table align by <span class="string">"|"</span></div><div class="line">nmap tab\|   :call CyyAlignBy(<span class="string">"\|"</span>)&lt;CR&gt;</div><div class="line">nmap tab,    :call CyyAlignBy(<span class="string">","</span>)&lt;CR&gt;</div><div class="line">nmap tab=    :call CyyAlignBy(<span class="string">"="</span>)&lt;CR&gt;</div><div class="line">nmap tab=&gt;   :call CyyAlignBy(<span class="string">"=&gt;"</span>)&lt;CR&gt;</div><div class="line"></div><div class="line"><span class="string">" 根据某字符串对齐</span></div><div class="line">func CyyAlignBy(string)</div><div class="line">    let __lineno    = line('.<span class="string">')</span></div><div class="line">    let __begin_ln  = __lineno</div><div class="line">    let __end_ln    = __lineno</div><div class="line"></div><div class="line">    " 向前搜索，直到空行</div><div class="line">    while <span class="string">""</span> != getline(__begin_ln)</div><div class="line">        let __begin_ln -= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> __begin_ln &lt; <span class="number">1</span></div><div class="line">            <span class="keyword">break</span></div><div class="line">        endif</div><div class="line">    endwhile</div><div class="line"></div><div class="line">    <span class="string">" 向后搜索，直到空行 </span></div><div class="line">    while "<span class="string">" != getline(__end_ln)</span></div><div class="line">        let __end_ln += 1</div><div class="line">    endwhile </div><div class="line">    </div><div class="line">    let __exec = printf('%d,%d Tab /%<span class="transposed_variable">s'</span>, __begin_ln, __end_ln, a:string)</div><div class="line">    echo __exec </div><div class="line">    exec __exec</div><div class="line"><span class="function"><span class="keyword">endfunction</span></span></div></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>依赖代码区块前后的空行来确定开始和结束的行号。</li>
+</ul>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/vim/">vim</a><a href="/tags/markdown/">markdown</a><a href="/tags/vimscript/">vimscript</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2014/10/11/shell/shell记录/">shell记录</a></h1>
+  
+
+    <time datetime="2014-10-10T16:00:00.000Z">
+  <span class="day">11</span><span class="month">10月</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <h1 id="多行复制">多行复制</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">9</span>,<span class="number">14</span> <span class="built_in">copy</span> <span class="number">45</span>  # <span class="built_in">copy</span> </div><div class="line"></div><div class="line"><span class="number">9</span>,<span class="number">14</span> <span class="keyword">move</span> <span class="number">45</span>  # <span class="keyword">move</span></div><div class="line"><span class="number">9</span>,<span class="number">14</span> <span class="keyword">m</span> <span class="number">45</span>  # <span class="keyword">move</span></div></pre></td></tr></table></figure>
+
+<h1 id="粘贴到行首">粘贴到行首</h1>
+<p>使用大写 <strong>P</strong> </p>
+<h1 id="在某个目录下查找包含某个字符串的文件">在某个目录下查找包含某个字符串的文件</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">find</span> . | xargs <span class="keyword">grep</span> -<span class="keyword">ri</span> <span class="string">"some string"</span></div></pre></td></tr></table></figure>
+
+<h3 id="xargs命令">xargs命令</h3>
+<p>作用：将参数列表转换成小块分段传递给其他命令，以避免参数列表过长的问题。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">rm</span> `find /path -<span class="typedef"><span class="keyword">type</span> f`</span></div><div class="line"></div><div class="line"><span class="preprocessor"># 如果path目录下文件过多就会因为“参数列表过长”而报错无法执行。但改用xargs以后，问题即获解决。</span></div><div class="line"></div><div class="line"><span class="title">find</span> /path -<span class="typedef"><span class="keyword">type</span> f -print0 | xargs -0 rm </span></div><div class="line"></div><div class="line"><span class="preprocessor"># xargs将find产生的长串文件列表拆散成多个子串，然后对每个子串调用rm。</span></div></pre></td></tr></table></figure>
+
+<h1 id="查找指定时间范围的文件">查找指定时间范围的文件</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">find</span> ./<span class="regexp">*.jpg</span> -newermt <span class="string">"2013-10-28"</span> ! -newermt <span class="string">"2013-10-29"</span></div></pre></td></tr></table></figure>
+
+<h1 id="字符串参与条件判断或者计算时，必须加上双引号">字符串参与条件判断或者计算时，必须加上双引号</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$string</span>"</span> ]; </div><div class="line"></div><div class="line">string=<span class="string">"test  test2"</span></div><div class="line">your_func <span class="variable">$string</span>      <span class="comment"># 错误：函数会接收到两个参数</span></div><div class="line">your_func <span class="string">"<span class="variable">$string</span>"</span>    <span class="comment"># 正常：函数正常接收到一个参数</span></div></pre></td></tr></table></figure>
+
+<p>注意： <strong>shell会把字符串按照IFS进行分割处理</strong></p>
+<h1 id="多行字符串：IFS换行符">多行字符串：IFS换行符</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">ifs=<span class="variable">$IFS</span> </div><div class="line">IFS=$`\n`              <span class="comment"># 注意这里，不能使用: IFS="\n" or IFS='\n'</span></div><div class="line">config=`cat &lt;&lt;EOF</div><div class="line">output: .user.js</div><div class="line"></div><div class="line">dese:</div><div class="line"><span class="comment">// ==UserScript==</span></div><div class="line"><span class="comment">// @name         Userscript</span></div><div class="line"><span class="comment">// @namespace    http://cyy0523xc.github.io/</span></div><div class="line"><span class="comment">// @version      0.1</span></div><div class="line"><span class="comment">// @description  something </span></div><div class="line"><span class="comment">// @match        http://*/*</span></div><div class="line"><span class="comment">// @copyright    2014, Alex(cyy0523xc@gmail.com)</span></div><div class="line"><span class="comment">// ==/UserScript==</span></div><div class="line">    </div><div class="line">input: </div><div class="line">- </div><div class="line">   </div><div class="line">EOF`</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="variable">$config</span></div><div class="line">IFS=<span class="variable">$ifs</span></div></pre></td></tr></table></figure>
+
+<h1 id="批量重命名文件">批量重命名文件</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rename <span class="string">'s/201[34]\-[01][0-9]\-[012][0-9]\-//'</span> *.md</div></pre></td></tr></table></figure>
+
+<h1 id="期待一元表达式">期待一元表达式</h1>
+<p>异常信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">bash</span>: <span class="string">[: h: 期待一元表达式]</span></div></pre></td></tr></table></figure>
+
+<p>对应语句：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="variable">$1</span> ]</div><div class="line"></div><div class="line"><span class="comment"># 如果变量未定义的话，则报错，应改成：</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"h"</span> = <span class="string">"<span class="variable">$1</span>"</span> ]</div></pre></td></tr></table></figure>
+
+
+    
+    
+    <footer class="meta">
+      
+  <div class="cats">
+<a href="/categories/record/">record</a></div>
+
+      
+  <div class="tags">
+<a href="/tags/shell/">shell</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+
+  <nav id="pagenavi">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2014 AlexCai
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+    try {
+        $('.fancybox').fancybox();
+    } catch(e) {
+        console.log('after_footer:fancybox');
+    }
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>
