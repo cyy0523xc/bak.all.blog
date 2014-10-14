@@ -9,6 +9,7 @@
   <div class="entry-content">
     <% if (item.excerpt && index){ %>
       <%- item.excerpt %>
+      <a href="<%- item.permalink %>" target="_blank" class="post-read-more">READ MORE</a>
     <% } else { %>
       <%- item.content %>
     <% } %>

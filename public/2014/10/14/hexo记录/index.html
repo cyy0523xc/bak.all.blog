@@ -3,9 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Record | 数据明月</title>
+  <title>hexo记录 | 数据明月</title>
   <meta name="author" content="AlexCai">
 
+  
+  <meta name="description" content="加上阅读更多的链接
+12# 针对phase主题vim layout/_partial/article.ejs
+
+找到对应的地方，加上相应的代码，如下：
+123456&amp;lt;% if (item.excerpt &amp;&amp; index){ %&amp;gt;  &amp;lt;%- item.excerpt %&amp;gt;  ">
   
   
 
@@ -41,21 +47,7 @@
   </ul>
 </nav>
 </header>
-  <div id="content" class="inner">
-
-<header id="archive-header">
-  <h1 class="alignleft">Category: Record</h1>
-  <div class="search alignright">
-    <form action="http://google.com/search" method="get" accept-charset="utf-8">
-      <input type="search" name="q" results="0" placeholder="Search">
-      <input type="hidden" name="q" value="site:cyy0523xc.github.io">
-    </form>
-  </div>
-</header>
-
-
-  
-    <article class="post">
+  <div id="content" class="inner"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -72,7 +64,7 @@
   <header>
     
   
-    <h1 class="title"><a href="/2014/10/14/hexo记录/">hexo记录</a></h1>
+    <h1 class="title">hexo记录</h1>
   
 
     <time datetime="2014-10-13T16:00:00.000Z">
@@ -138,14 +130,6 @@
   </div>
   
 </article>
-
-  
-
-  <nav id="pagenavi">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 </div>
   <footer id="footer" class="inner"><div class="social alignright">
   
